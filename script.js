@@ -34,7 +34,22 @@ myLibrary.push(rhythmOfWar);
 //   }
 // }
 
-function addBookToLibrary() {}
+const submit = document.querySelector(".submit");
+submit.addEventListener("click", event => {
+  event.preventDefault();
+  addBookToLibrary();
+});
+
+function addBookToLibrary() {
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const read = document.getElementById("read").checked;
+
+  const book = new Book(title, author, pages, read);
+  myLibrary.push(book);
+  console.log(myLibrary);
+}
 
 function displayBooks() {
   const table = document.querySelector("table");
@@ -43,10 +58,7 @@ function displayBooks() {
     table.appendChild(row);
     for (let keys in Object.keys(myLibrary[books])) {
       const data = document.createElement("td");
-
       row.appendChild(data).textContent = Object.values(myLibrary[books])[keys];
     }
   }
 }
-
-displayBooks();
