@@ -28,12 +28,6 @@ const rhythmOfWar = new Book("Rhythm of War", "Brandon Sanderson", 1232, false);
 myLibrary.push(theHobbit);
 myLibrary.push(rhythmOfWar);
 
-// for (let books in myLibrary) {
-//   for (let keys in Object.keys(myLibrary[books])) {
-//     console.log(Object.values(myLibrary[books])[keys]);
-//   }
-// }
-
 const submit = document.querySelector(".submit");
 submit.addEventListener("click", event => {
   event.preventDefault();
@@ -49,12 +43,16 @@ function addBookToLibrary() {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
   console.log(myLibrary);
+
+  displayBooks();
 }
 
 function displayBooks() {
-  const table = document.querySelector("table");
+  const table = document.querySelector("tbody");
+  table.innerHTML = "";
   for (let books in myLibrary) {
     const row = document.createElement("tr");
+    row.setAttribute("id", books);
     table.appendChild(row);
     for (let keys in Object.keys(myLibrary[books])) {
       const data = document.createElement("td");
@@ -62,3 +60,5 @@ function displayBooks() {
     }
   }
 }
+
+displayBooks();
