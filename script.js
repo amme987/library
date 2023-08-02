@@ -53,9 +53,14 @@ function displayBooks() {
   table.textContent = "";
   for (let books in myLibrary) {
     const row = document.createElement("tr");
+    const data = document.createElement("td");
+    const button = document.createElement("button");
+    const image = document.createElement("img");
+    image.setAttribute("src", "delete.png");
     // Give each book unique id to help with removing them later
     row.setAttribute("id", books);
     table.appendChild(row);
+    // Put book info in row
     for (let keys in Object.keys(myLibrary[books])) {
       const data = document.createElement("td");
       row.appendChild(data).textContent = Object.values(myLibrary[books])[keys];
@@ -63,12 +68,13 @@ function displayBooks() {
         data.setAttribute("class", "status");
       }
     }
+    row.appendChild(data).appendChild(button).appendChild(image);
   }
 }
 
 displayBooks();
 
-// When table is clicked, if it's in the 'Status' column, toggle text
+// When table is clicked, if it's in the 'Status' column, toggle status
 table.addEventListener("click", e => {
   const id = e.target.parentNode.id;
   if (e.target.className === "status") {

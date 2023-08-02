@@ -80,6 +80,15 @@ tbody > tr:nth-child(odd) {
   background-color: lightgray;
 }
 
+td button {
+  background-color: transparent;
+  border: none;
+}
+
+img {
+  width: 1rem;
+}
+
 /* .status {
   cursor: pointer;
 } */
