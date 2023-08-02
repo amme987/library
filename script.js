@@ -70,10 +70,13 @@ displayBooks();
 
 // When table is clicked, if it's in the 'Status' column, toggle text
 table.addEventListener("click", e => {
-  console.log(e.target.textContent);
+  const id = e.target.parentNode.id;
   if (e.target.className === "status") {
-    e.target.textContent === "true"
-      ? (e.target.textContent = "false")
-      : (e.target.textContent = "true");
+    if (e.target.textContent === "true") {
+      myLibrary[id].read = false;
+    } else {
+      myLibrary[id].read = true;
+    }
+    displayBooks();
   }
 });
