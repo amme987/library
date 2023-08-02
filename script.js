@@ -28,6 +28,7 @@ const rhythmOfWar = new Book("Rhythm of War", "Brandon Sanderson", 1232, false);
 myLibrary.push(theHobbit);
 myLibrary.push(rhythmOfWar);
 
+// Add book to the library when user clicks the submit button
 const submit = document.querySelector(".submit");
 submit.addEventListener("click", event => {
   event.preventDefault();
@@ -42,23 +43,37 @@ function addBookToLibrary() {
 
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
-  console.log(myLibrary);
 
   displayBooks();
 }
 
+const table = document.querySelector("tbody");
+
 function displayBooks() {
-  const table = document.querySelector("tbody");
-  table.innerHTML = "";
+  table.textContent = "";
   for (let books in myLibrary) {
     const row = document.createElement("tr");
+    // Give each book unique id to help with removing them later
     row.setAttribute("id", books);
     table.appendChild(row);
     for (let keys in Object.keys(myLibrary[books])) {
       const data = document.createElement("td");
       row.appendChild(data).textContent = Object.values(myLibrary[books])[keys];
+      if (Object.keys(myLibrary[books])[keys] === "read") {
+        data.setAttribute("class", "status");
+      }
     }
   }
 }
 
 displayBooks();
+
+// When table is clicked, if it's in the 'Status' column, toggle text
+table.addEventListener("click", e => {
+  console.log(e.target.textContent);
+  if (e.target.className === "status") {
+    e.target.textContent === "true"
+      ? (e.target.textContent = "false")
+      : (e.target.textContent = "true");
+  }
+});
