@@ -48,15 +48,14 @@ function addBookToLibrary() {
 }
 
 const table = document.querySelector("tbody");
-
 function displayBooks() {
   table.textContent = "";
   for (let books in myLibrary) {
     const row = document.createElement("tr");
     const data = document.createElement("td");
-    const button = document.createElement("button");
-    const image = document.createElement("img");
-    image.setAttribute("src", "delete.png");
+    const input = document.createElement("input");
+    input.setAttribute("type", "image");
+    input.setAttribute("src", "delete.png");
     // Give each book unique id to help with removing them later
     row.setAttribute("id", books);
     table.appendChild(row);
@@ -68,21 +67,31 @@ function displayBooks() {
         data.setAttribute("class", "status");
       }
     }
-    row.appendChild(data).appendChild(button).appendChild(image);
+    // 'Delete' column
+    row.appendChild(data).appendChild(input);
+    // image.setAttribute("class", "delete");
   }
 }
 
 displayBooks();
 
-// When table is clicked, if it's in the 'Status' column, toggle status
+// Change table elements
 table.addEventListener("click", e => {
-  const id = e.target.parentNode.id;
+  let id;
+  // If clicked in the 'Status' column, toggle status by changing it in myLibrary[]
   if (e.target.className === "status") {
+    id = e.target.parentElement.id;
     if (e.target.textContent === "true") {
       myLibrary[id].read = false;
     } else {
       myLibrary[id].read = true;
     }
-    displayBooks();
   }
+  // If clicked in the 'Delete' column, delete row by deleting book from myLibrary[]
+  if (e.target.type === "image") {
+    id = e.target.parentElement.parentElement.id;
+    myLibrary.splice(id, 1);
+    console.log(id);
+  }
+  displayBooks();
 });
