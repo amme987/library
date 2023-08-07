@@ -16,12 +16,13 @@ header {
 }
 
 button {
+  border: none;
   cursor: pointer;
 }
 
-button,
+.add,
+.submit,
 label {
-  border: none;
   font-weight: bold;
 }
 
@@ -37,8 +38,12 @@ form {
   border: 2px solid green;
   margin-bottom: 30px;
 
-  display: grid;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  /* display: grid; */
   /* grid-template: repeat(5, 1fr) / repeat(2, 1fr); */
+  background-color: white;
   align-items: center;
   padding: 1rem;
   width: min-content;
@@ -54,9 +59,10 @@ input[type="checkbox"] {
 
 .submit {
   grid-column: span 2;
-  padding: 5px;
+  padding: 0.5rem;
   color: white;
   background-color: green;
+  border-radius: 5px;
 }
 
 table {
@@ -79,10 +85,6 @@ td {
 tr {
   border: 1px solid lightgray;
 }
-
-/* tbody > tr:nth-child(odd) {
-  background-color: lightgray;
-} */
 
 /* Center 'Delete' column */
 td:nth-child(5),

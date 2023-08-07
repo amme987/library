@@ -9,9 +9,9 @@ function Book(title, author, pages, read) {
 
 Book.prototype.haveRead = function () {
   if (this.read) {
-    return "read";
+    return "Read";
   } else {
-    return "not read yet";
+    return "Not read yet";
   }
 };
 
@@ -34,6 +34,14 @@ submit.addEventListener("click", event => {
   event.preventDefault();
   addBookToLibrary();
 });
+
+function openForm() {
+  document.querySelector("form").style.display = "grid";
+}
+
+function closeForm() {
+  document.querySelector("form").style.display = "none";
+}
 
 function addBookToLibrary() {
   const title = document.getElementById("title").value;
@@ -79,9 +87,9 @@ function displayBooks() {
   }
 }
 
-// Toggle button appearance according to status
+// Toggle text color according to status
 function styleStatus(status) {
-  if (status.textContent === "read") {
+  if (status.textContent === "Read") {
     status.style.color = "green";
     // status.style.backgroundColor = "#DCEDC8";
   } else {
@@ -98,7 +106,7 @@ table.addEventListener("click", e => {
   const id = e.target.parentElement.parentElement.id;
   // If clicked in the 'Status' column, toggle status by changing it in myLibrary[]
   if (e.target.type === "submit") {
-    if (e.target.textContent === "read") {
+    if (e.target.textContent === "Read") {
       myLibrary[id].read = false;
     } else {
       myLibrary[id].read = true;
