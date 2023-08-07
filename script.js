@@ -21,7 +21,7 @@ Book.prototype.info = function () {
   } pages, ${this.haveRead()}`;
 };
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
 const rhythmOfWar = new Book("Rhythm of War", "Brandon Sanderson", 1232, false);
 
 // Test adding books to library
@@ -47,12 +47,15 @@ function addBookToLibrary() {
   displayBooks();
 }
 
+let status = function () {};
+
 const table = document.querySelector("tbody");
 function displayBooks() {
   table.textContent = "";
   for (let books in myLibrary) {
     const row = document.createElement("tr");
     const data = document.createElement("td");
+    const button = document.createElement("button");
     const input = document.createElement("input");
     input.setAttribute("type", "image");
     input.setAttribute("src", "delete.png");
@@ -62,14 +65,22 @@ function displayBooks() {
     // Put book info in row
     for (let keys in Object.keys(myLibrary[books])) {
       const data = document.createElement("td");
-      row.appendChild(data).textContent = Object.values(myLibrary[books])[keys];
+      // If in 'Status' column, put status in button
       if (Object.keys(myLibrary[books])[keys] === "read") {
-        data.setAttribute("class", "status");
+        console.log(myLibrary[books].haveRead());
+        // row.appendChild(data).appendChild(button).textContent = Object.values(
+        //   myLibrary[books]
+        // )[keys];
+        row.appendChild(data).appendChild(button).textContent =
+          myLibrary[books].haveRead();
+      } else {
+        row.appendChild(data).textContent = Object.values(myLibrary[books])[
+          keys
+        ];
       }
     }
     // 'Delete' column
     row.appendChild(data).appendChild(input);
-    // image.setAttribute("class", "delete");
   }
 }
 
@@ -77,11 +88,10 @@ displayBooks();
 
 // Change table elements
 table.addEventListener("click", e => {
-  let id;
+  const id = e.target.parentElement.parentElement.id;
   // If clicked in the 'Status' column, toggle status by changing it in myLibrary[]
-  if (e.target.className === "status") {
-    id = e.target.parentElement.id;
-    if (e.target.textContent === "true") {
+  if (e.target.type === "submit") {
+    if (e.target.textContent === "read") {
       myLibrary[id].read = false;
     } else {
       myLibrary[id].read = true;
@@ -89,7 +99,6 @@ table.addEventListener("click", e => {
   }
   // If clicked in the 'Delete' column, delete row by deleting book from myLibrary[]
   if (e.target.type === "image") {
-    id = e.target.parentElement.parentElement.id;
     myLibrary.splice(id, 1);
     console.log(id);
   }
