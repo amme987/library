@@ -19,9 +19,9 @@ button {
   cursor: pointer;
 }
 
-.add,
-.submit,
+button,
 label {
+  border: none;
   font-weight: bold;
 }
 
@@ -57,7 +57,6 @@ input[type="checkbox"] {
   padding: 5px;
   color: white;
   background-color: green;
-  border: none;
 }
 
 table {

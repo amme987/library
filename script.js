@@ -47,8 +47,6 @@ function addBookToLibrary() {
   displayBooks();
 }
 
-let status = function () {};
-
 const table = document.querySelector("tbody");
 function displayBooks() {
   table.textContent = "";
@@ -67,12 +65,9 @@ function displayBooks() {
       const data = document.createElement("td");
       // If in 'Status' column, put status in button
       if (Object.keys(myLibrary[books])[keys] === "read") {
-        console.log(myLibrary[books].haveRead());
-        // row.appendChild(data).appendChild(button).textContent = Object.values(
-        //   myLibrary[books]
-        // )[keys];
         row.appendChild(data).appendChild(button).textContent =
           myLibrary[books].haveRead();
+        styleStatus(button);
       } else {
         row.appendChild(data).textContent = Object.values(myLibrary[books])[
           keys
@@ -82,6 +77,18 @@ function displayBooks() {
     // 'Delete' column
     row.appendChild(data).appendChild(input);
   }
+}
+
+// Toggle button appearance according to status
+function styleStatus(status) {
+  if (status.textContent === "read") {
+    status.style.color = "green";
+    // status.style.backgroundColor = "#DCEDC8";
+  } else {
+    status.style.color = "red";
+    // status.style.backgroundColor = "#FFCDD2";
+  }
+  status.style.backgroundColor = "transparent";
 }
 
 displayBooks();
