@@ -1,7 +1,3 @@
-/* * {
-  box-sizing: border-box;
-} */
-
 html,
 button,
 input {
@@ -71,11 +67,6 @@ form div {
   color: green;
 }
 
-/* input:not([type="image"]) {
-  border: 1px solid black;
-  border-radius: 2px;
-} */
-
 input[type="checkbox"] {
   margin: 0;
   justify-self: start;
@@ -96,7 +87,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   border: 2px solid black;
-  /* border-radius: 5px; */
 }
 
 th {
