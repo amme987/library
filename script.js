@@ -37,10 +37,12 @@ submit.addEventListener("click", event => {
 
 function openForm() {
   document.querySelector("form").style.display = "grid";
+  document.querySelector(".overlay").style.display = "block";
 }
 
 function closeForm() {
   document.querySelector("form").style.display = "none";
+  document.querySelector(".overlay").style.display = "none";
 }
 
 function addBookToLibrary() {
