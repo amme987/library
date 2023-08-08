@@ -9,12 +9,13 @@
     <title>Library</title>
   </head>
   <body>
-    <div class="overlay"></div>
+    <div class="overlay" onclick="closeForm()"></div>
     <header>
       <h1>Library</h1>
       <button class="add" onclick="openForm()">+ Add Book</button>
     </header>
     <form>
+      <div>Add New Book</div>
       <label for="title">Title </label>
       <input type="text" name="title" id="title" />
       <label for="author">Author </label>
@@ -23,7 +24,7 @@
       <input type="number" name="pages" id="pages" />
       <label for="read">Read? </label>
       <input type="checkbox" name="read" id="read" />
-      <button class="submit" onclick="closeForm()">Submit</button>
+      <button type="button" class="submit" onclick="closeForm()">Submit</button>
     </form>
     <table>
       <thead>

@@ -31,11 +31,12 @@ myLibrary.push(rhythmOfWar);
 // Add book to the library when user clicks the submit button
 const submit = document.querySelector(".submit");
 submit.addEventListener("click", event => {
-  event.preventDefault();
+  // event.preventDefault();
   addBookToLibrary();
 });
 
 function openForm() {
+  document.querySelector("form").reset();
   document.querySelector("form").style.display = "grid";
   document.querySelector(".overlay").style.display = "block";
 }
@@ -89,19 +90,17 @@ function displayBooks() {
   }
 }
 
+displayBooks();
+
 // Toggle text color according to status
 function styleStatus(status) {
   if (status.textContent === "Read") {
     status.style.color = "green";
-    // status.style.backgroundColor = "#DCEDC8";
   } else {
     status.style.color = "red";
-    // status.style.backgroundColor = "#FFCDD2";
   }
   status.style.backgroundColor = "transparent";
 }
-
-displayBooks();
 
 // Change table elements
 table.addEventListener("click", e => {
