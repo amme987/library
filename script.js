@@ -30,9 +30,14 @@ myLibrary.push(rhythmOfWar);
 
 // Add book to the library when user clicks the submit button
 const submit = document.querySelector(".submit");
-submit.addEventListener("click", event => {
-  // event.preventDefault();
-  addBookToLibrary();
+// Only add books when required input fields are filled
+submit.addEventListener("click", e => {
+  let inputs = document.querySelectorAll("input");
+  if (Array.from(inputs).every(input => !input.validity.valueMissing)) {
+    e.preventDefault();
+    closeForm();
+    addBookToLibrary();
+  }
 });
 
 function openForm() {
